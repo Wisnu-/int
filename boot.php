@@ -7,6 +7,7 @@ session_start();
  * 		- live
  * @var string
  */
+// $STATE = 'maintenance';
 $STATE = 'live';
 
 /**
@@ -15,11 +16,22 @@ $STATE = 'live';
  */
 $ROOT = dirname(__FILE__);
 
-/**
- * include composer autoload
- */
-require_once $ROOT . '/vendor/autoload.php';
+require $ROOT . '/core.php';
 
+/**
+ * check application is maintenance or live
+ * @var $state
+ * @return void
+ */
 if ($STATE == 'maintenance') {
 	R::to('maintenance');
 }
+
+/**
+ * define database connection configuration
+ */
+
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'monev');
