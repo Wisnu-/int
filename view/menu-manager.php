@@ -15,7 +15,9 @@ require '../boot.php';
 				<a id="removeMenu" class="easyui-linkbutton">Remove Menu</a>
 				<a id="saveMenu" class="easyui-linkbutton">Save Menu</a>
         	</div>
-        	<div data-options="region:'center',border:false"></div>
+        	<div data-options="region:'center',border:false" style="padding:0 10px;">
+        		<ul id="mTree"></ul>
+        	</div>
         </div>
     </div>
 </div>
@@ -39,4 +41,25 @@ require '../boot.php';
 	$('#editMenu').linkbutton({plain:true});
 	$('#removeMenu').linkbutton({plain:true});
 	$('#saveMenu').linkbutton({plain:true});
+
+
+
+	$("#mTree").tree({
+		url:'handler-menu.php',
+		queryParams : {
+			op: 'showList'
+		},
+		lines:true,
+		dnd:true,
+		checkbox:true
+
+	});
+
+
+	$('#saveMenu').bind('click', function(){
+		var rows = $('#mTree').tree('getChecked');
+
+		console.log(rows);
+    });
+
 </script>

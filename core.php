@@ -2,30 +2,31 @@
 
 class DB
 {
-    protected static $instance = null;
+    protected static $conn = null;
     final private function __construct() {}
     final private function __clone() {}
     /**
      * @return PDO
      */
-    public static function instance() {
-        if (self::$instance === null) {
+    public static function conn() {
+        if (self::$conn === null) {
             try {
-                self::$instance = new PDO(
+                self::$conn = new PDO(
                     'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME,
                     DB_USER,
                     DB_PASS
                 );
-                self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 die('Database connection could not be established.');
             }
         }
-        return self::$instance;
+        return self::$conn;
     }
     
     public static function __callStatic($method, $args) {
-        return call_user_func_array(array(self::instance(), $method), $args);
+        return call_user_func_array(array(self::conn(), $method), $args);
     }
 }
 
@@ -43,7 +44,7 @@ class R {
 
     public static function fail($message = '')
     {
-        header("Status: 501 Not Implemented");
+        header("HTTP/1.1 501 Not Implemented");
             $data = [
                 'message' => $message 
             ];
@@ -62,4 +63,19 @@ class R {
     }
 
 }
+function buildTree(array &$elements, $parentId = 0) {
+    $branch = array();
 
+    foreach ($elements as $element) {
+        if ($element['parent_id'] == $parentId) {
+            $children = buildTree($elements, $element['id']);
+            if ($children) {
+                $element['children'] = $children;
+            }
+            $branch[] = $element;
+            // $branch[$element['id']] = $element;
+            unset($elements[$element['id']]);
+        }
+    }
+    return $branch;
+}
