@@ -34,4 +34,13 @@ if ($STATE == 'maintenance') {
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'monev');
+define('DB_NAME', 'monevrenstra');
+
+/**
+ * define database connection configuration
+ */
+
+define('DBH_HOST', 'CODING-PRIMA\SQLEXPRESS');
+define('DBH_USER', 'sa');
+define('DBH_PASS', '1195100038');
+define('DBH_NAME', 'tests');

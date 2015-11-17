@@ -42,7 +42,7 @@ $(document).ready(function(){
 	$('#menu-manager').click(function(e) {
 		e.preventDefault();
 
-		$.post("view/menu-manager.php",
+		$.post("view/administrator/menu-manager.php",
 		function (data) {
 			$("#x-content").empty();
 			if (data == "404")
@@ -60,7 +60,7 @@ $(document).ready(function(){
 	$('#user-manager').click(function(e) {
 		e.preventDefault();
 
-		$.post("view/user-manager.php",
+		$.post("view/administrator/user-manager.php",
 		function (data) {
 			$("#x-content").empty();
 			if (data == "404")

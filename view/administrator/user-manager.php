@@ -1,5 +1,5 @@
 <?php 
-	require_once '../boot.php';
+	require_once '../../boot.php';
 ?>
 
 <div id="konten">
@@ -90,14 +90,14 @@
 	$('#groupGrid').datagrid({
 	    url: 'handler-users.php',
 	    queryParams: {
-			op: 'showUser'
+			op: 'showGroup'
 		},
 		rownumbers:true,
 		toolbar: '#groupToolbar',
 		columns:[[
 	        {field:'group_id',title:'Nama Group',width:250,hidden:true},
-	        {field:'group_name',title:'Nama Group',width:'50%'},
-	        {field:'group_description',title:'Keterangan',width:'50%'}
+	        {field:'group_name',title:'Nama Group',width:'38%'},
+	        {field:'group_description',title:'Keterangan',width:'58%'}
 	    ]],
 	    singleSelect:true,
 	    pagination:true,

@@ -54,5 +54,7 @@
     </div>
 
     <div id="x-dialog"></div>
+    <div id="x-dialog2"></div>
+    <div id="x-dialog3"></div>
 </body>
 </html>
