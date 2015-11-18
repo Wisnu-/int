@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="static/css/easyui.css">
 	<script type="text/javascript" src="static/js/jquery.min.js"></script>
 	<script type="text/javascript" src="static/js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="static/js/jquery.edatagrid.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 </head>
 <body class="easyui-layout">
